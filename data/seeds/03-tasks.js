@@ -6,16 +6,19 @@ exports.seed = function (knex) {
         {
           description: "Complete knex migration",
           notes: "Use knex.js docs",
+          project_id: 1,
           completed: false,
         },
         {
           description: "Complete seeds",
           notes: "GIVE US SEED DATA NEXT TIME",
+          project_id: 3,
           completed: false,
         },
         {
           description: "Stop Dr. Evil",
           notes: "Groovy Baby",
+          project_id: 2,
           completed: false,
         },
       ]);

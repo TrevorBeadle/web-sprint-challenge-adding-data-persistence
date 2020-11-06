@@ -16,6 +16,7 @@ exports.up = async function (knex) {
     tbl.increments("id");
     tbl.text("description", 128).notNull();
     tbl.text("notes", 128);
+    tbl.integer("project_id").references("id").inTable("projects");
     tbl.boolean("completed").notNull().defaultTo(false);
   });
 
