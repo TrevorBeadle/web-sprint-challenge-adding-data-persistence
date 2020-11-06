@@ -29,6 +29,29 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.post("/", validatePost, async (req, res, next) => {
+  try {
+    const newProject = await Project.addProject(req.body);
+    if (newProject) {
+      res.status(201).json(newProject);
+    } else {
+      next({ code: 400, message: "something went wrong" });
+    }
+  } catch (err) {
+    next({ code: 500, message: err.message });
+  }
+});
+
+function validatePost(req, res, next) {
+  if (!req.body.name) {
+    next({ code: 400, message: "please provide a name for the project" });
+  } else {
+    next();
+  }
+}
+
 router.use((err, req, res, next) => {
   res.status(err.code).json({ message: err.message });
 });
+
+module.exports = router;
